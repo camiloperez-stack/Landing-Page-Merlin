@@ -1,726 +1,710 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merlín Seguros | Lo hacemos fácil y justo para ti</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;0,700;0,800;0,900;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --morado-corp: #2F0059;
+            --morado-grad-1: #2F0048;
+            --morado-grad-2: #3E0161;
+            --morado-grad-3: #300047;
+            --acento-1: #8159BE;
+            --acento-2: #6F429A;
+            --acento-suave: #9989A7;
+            --bg-light: #F9F8FC;
+            --white: #FFFFFF;
+            --text-dark: #120320;
+            --text-muted: #5C5268;
+            --font-title: 'Montserrat', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { font-family: var(--font-title); }
+
+        /* Navbar Glassmorphism */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(47, 0, 89, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.1rem 2rem;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-logo svg {
+            height: 42px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--morado-corp);
+            font-weight: 600;
+            font-size: 0.92rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--acento-1); }
+
+        .btn-nav {
+            background: var(--morado-corp);
+            color: var(--white) !important;
+            padding: 0.7rem 1.6rem;
+            border-radius: 50px;
+            font-weight: 700 !important;
+            box-shadow: 0 4px 15px rgba(47, 0, 89, 0.25);
+            transition: all 0.3s ease !important;
+        }
+
+        .btn-nav:hover {
+            background: var(--acento-2);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(111, 66, 154, 0.35);
+        }
+
+        /* Dynamic Hero Section */
+        .hero {
+            position: relative;
+            padding: 9rem 2rem 6rem;
+            background: linear-gradient(-121deg, var(--morado-grad-1), var(--morado-grad-2), var(--morado-grad-3));
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        /* Pattern de 4 líneas horizontales / orgánico */
+        .hero-pattern {
+            position: absolute;
+            top: -10%;
+            right: -5%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(129, 89, 190, 0.18) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.8rem;
+        }
+
+        .hero-title {
+            font-size: 3.4rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero-title span {
+            background: linear-gradient(90deg, #FFFFFF, var(--acento-1));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 1.15rem;
+            font-weight: 300;
+            line-height: 1.7;
+            opacity: 0.9;
+            margin-bottom: 2.5rem;
+            max-width: 560px;
+        }
+
+        /* Hero Form Card Pro */
+        .hero-card {
+            background: var(--white);
+            border-radius: 28px;
+            padding: 2.8rem;
+            color: var(--text-dark);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+        }
+
+        .hero-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 10%; width: 80%; height: 5px;
+            background: linear-gradient(90deg, var(--morado-corp), var(--acento-1));
+            border-radius: 0 0 10px 10px;
+        }
+
+        .hero-card h3 {
+            font-size: 1.6rem;
+            color: var(--morado-corp);
+            margin-bottom: 0.4rem;
+            font-weight: 800;
+        }
+
+        .hero-card p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group { margin-bottom: 1.2rem; }
+
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--morado-corp);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.4rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.95rem 1.1rem;
+            border: 1.5px solid #E2D9EC;
+            border-radius: 14px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            background: #FAF8FC;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--acento-1);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(129, 89, 190, 0.15);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--morado-corp);
+            color: var(--white);
+            border: none;
+            padding: 1.1rem;
+            border-radius: 14px;
+            font-family: var(--font-title);
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(47, 0, 89, 0.25);
+            margin-top: 0.5rem;
+        }
+
+        .btn-submit:hover {
+            background: var(--acento-2);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(111, 66, 154, 0.35);
+        }
+
+        /* Pillars Section */
+        .section-padding { padding: 6rem 2rem; }
+
+        .section-header {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 4rem;
+        }
+
+        .tag-line {
+            color: var(--acento-1);
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.6rem;
+            display: block;
+        }
+
+        .section-title {
+            color: var(--morado-corp);
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .pillars-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .pillar-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 3rem 2.2rem;
+            border: 1px solid rgba(47, 0, 89, 0.06);
+            box-shadow: 0 10px 30px rgba(47, 0, 89, 0.03);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(47, 0, 89, 0.08);
+            border-color: rgba(129, 89, 190, 0.3);
+        }
+
+        .pillar-lines {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 1.5rem;
+        }
+
+        .pillar-lines span {
+            width: 4px;
+            height: 24px;
+            background: var(--morado-corp);
+            border-radius: 2px;
+        }
+
+        .pillar-lines span:nth-child(2) { opacity: 0.7; }
+        .pillar-lines span:nth-child(3) { opacity: 0.4; }
+        .pillar-lines span:nth-child(4) { opacity: 0.2; }
+
+        .pillar-title {
+            color: var(--morado-corp);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .pillar-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Founder Highlight Section */
+        .founder-section {
+            background: var(--white);
+            position: relative;
+        }
+
+        .founder-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .founder-box {
+            background: linear-gradient(135deg, var(--morado-corp), var(--morado-grad-2));
+            border-radius: 32px;
+            padding: 3.5rem;
+            color: var(--white);
+            position: relative;
+            box-shadow: 0 20px 40px rgba(47, 0, 89, 0.15);
+        }
+
+        .founder-quote {
+            font-size: 1.35rem;
+            font-style: italic;
+            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .founder-info h4 {
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+
+        .founder-info p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* Services Custom Grid */
+        .services-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.8rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.2rem 1.8rem;
+            border: 1px solid #EFEAF4;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            border-color: var(--acento-1);
+            box-shadow: 0 12px 30px rgba(129, 89, 190, 0.12);
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            width: 54px;
+            height: 54px;
+            background: rgba(129, 89, 190, 0.1);
+            color: var(--morado-corp);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.4rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            color: var(--morado-corp);
+            margin-bottom: 0.6rem;
+        }
+
+        .service-card p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Footer Pro */
+        footer {
+            background: #120024;
+            color: var(--white);
+            padding: 5rem 2rem 2.5rem;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.2fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-logo {
+            height: 48px;
+            width: auto;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-col h5 {
+            font-size: 1.05rem;
+            color: var(--acento-1);
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+        }
+
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.7rem; }
+
+        .footer-col ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover { color: var(--white); }
+
+        .footer-bottom {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        @media (max-width: 1024px) {
+            .hero-container, .founder-container { grid-template-columns: 1fr; }
+            .pillars-grid { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-container { grid-template-columns: 1fr 1fr; }
+            .hero-title { font-size: 2.6rem; }
+        }
+    </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="es"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Merlín Seguros | Lo hacemos fácil y justo para ti&lt;/title&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;0,700;0,800;0,900;1,400&amp;family=Poppins:wght@300;400;500;600&amp;display=swap" rel="stylesheet"&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/lucide@latest"&gt;&lt;/script&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>:root {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--morado-corp: #2F0059;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--morado-grad-1: #2F0048;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--morado-grad-2: #3E0161;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--morado-grad-3: #300047;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--acento-1: #8159BE;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--acento-2: #6F429A;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--acento-suave: #9989A7;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--bg-light: #F9F8FC;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--white: #FFFFFF;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--text-dark: #120320;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--text-muted: #5C5268;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--font-title: 'Montserrat', sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--font-body: 'Poppins', sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>* {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-sizing: border-box;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>scroll-behavior: smooth;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: var(--font-body);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--text-dark);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--bg-light);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>overflow-x: hidden;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>h1, h2, h3, h4 { font-family: var(--font-title); }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Navbar Glassmorphism */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>header {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: fixed;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>top: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>left: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>z-index: 1000;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(255, 255, 255, 0.85);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>backdrop-filter: blur(12px);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-bottom: 1px solid rgba(47, 0, 89, 0.08);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.nav-container {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 1280px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: space-between;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 1.1rem 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.brand-logo {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: none;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.brand-logo svg {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 42px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: auto;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.nav-links {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 2.2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>list-style: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.nav-links a {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--morado-corp);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.92rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: color 0.3s;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.nav-links a:hover { color: var(--acento-1); }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn-nav {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--morado-corp);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--white) !important;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0.7rem 1.6rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 50px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 700 !important;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 15px rgba(47, 0, 89, 0.25);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease !important;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn-nav:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--acento-2);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-2px);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 6px 20px rgba(111, 66, 154, 0.35);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Dynamic Hero Section */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 9rem 2rem 6rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(-121deg, var(--morado-grad-1), var(--morado-grad-2), var(--morado-grad-3));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Pattern de 4 líneas horizontales / orgánico */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero-pattern {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>top: -10%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>right: -5%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 500px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 500px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: radial-gradient(circle, rgba(129, 89, 190, 0.18) 0%, rgba(0,0,0,0) 70%);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>pointer-events: none;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero-container {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 1280px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: 1.1fr 0.9fr;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 4rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>z-index: 2;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero-badge {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: inline-flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(255, 255, 255, 0.12);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid rgba(255, 255, 255, 0.25);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>backdrop-filter: blur(10px);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 8px 18px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.85rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>letter-spacing: 0.5px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero-title {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 3.4rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 800;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.15;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>letter-spacing: -1px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero-title span {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(90deg, #FFFFFF, var(--acento-1));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>-webkit-background-clip: text;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>-webkit-text-fill-color: transparent;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero-desc {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.15rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 300;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.7;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>opacity: 0.9;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 2.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 560px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Hero Form Card Pro */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero-card {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 28px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 2.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--text-dark);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid rgba(255, 255, 255, 0.8);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero-card::before {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>content: "";</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>top: 0; left: 10%; width: 80%; height: 5px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(90deg, var(--morado-corp), var(--acento-1));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 0 0 10px 10px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero-card h3 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.6rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--morado-corp);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 0.4rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 800;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero-card p {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.88rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.form-group { margin-bottom: 1.2rem; }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.form-group label {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: block;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.82rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--morado-corp);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-transform: uppercase;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>letter-spacing: 0.5px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 0.4rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.form-control {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0.95rem 1.1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 1.5px solid #E2D9EC;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 14px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: var(--font-body);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.95rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #FAF8FC;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.form-control:focus {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>outline: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-color: var(--acento-1);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 0 0 4px rgba(129, 89, 190, 0.15);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn-submit {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--morado-corp);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 1.1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 14px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: var(--font-title);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 8px 20px rgba(47, 0, 89, 0.25);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 0.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn-submit:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--acento-2);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-2px);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 12px 25px rgba(111, 66, 154, 0.35);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Pillars Section */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.section-padding { padding: 6rem 2rem; }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.section-header {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 720px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto 4rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.tag-line {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--acento-1);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.85rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 800;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-transform: uppercase;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>letter-spacing: 2px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 0.6rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: block;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.section-title {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--morado-corp);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 2.4rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 800;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>letter-spacing: -0.5px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pillars-grid {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 1280px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: repeat(3, 1fr);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pillar-card {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 24px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 3rem 2.2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid rgba(47, 0, 89, 0.06);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 10px 30px rgba(47, 0, 89, 0.03);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pillar-card:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-8px);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 20px 40px rgba(47, 0, 89, 0.08);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-color: rgba(129, 89, 190, 0.3);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pillar-lines {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pillar-lines span {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 24px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--morado-corp);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 2px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pillar-lines span:nth-child(2) { opacity: 0.7; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pillar-lines span:nth-child(3) { opacity: 0.4; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pillar-lines span:nth-child(4) { opacity: 0.2; }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pillar-title {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--morado-corp);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.4rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 800;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pillar-desc {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.95rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.6;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Founder Highlight Section */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.founder-section {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.founder-container {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 1280px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: 1fr 1fr;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.founder-box {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, var(--morado-corp), var(--morado-grad-2));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 32px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 3.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 20px 40px rgba(47, 0, 89, 0.15);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.founder-quote {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.35rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-style: italic;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 300;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.6;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.founder-info h4 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 800;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.founder-info p {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.85rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>opacity: 0.8;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Services Custom Grid */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.services-grid {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 1280px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: repeat(4, 1fr);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 1.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.service-card {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 2.2rem 1.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #EFEAF4;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.service-card:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-color: var(--acento-1);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 12px 30px rgba(129, 89, 190, 0.12);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-5px);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.service-icon {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 54px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 54px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(129, 89, 190, 0.1);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--morado-corp);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1.4rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.service-card h3 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--morado-corp);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 0.6rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.service-card p {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.88rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--text-muted);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.5;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Footer Pro */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>footer {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #120024;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 5rem 2rem 2.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.footer-container {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 1280px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: 2fr 1fr 1fr 1.2fr;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 4rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 4rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.footer-logo {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 48px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1.2rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.footer-col h5 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.05rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--acento-1);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1.2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.footer-col ul { list-style: none; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.footer-col ul li { margin-bottom: 0.7rem; }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.footer-col ul li a {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: rgba(255, 255, 255, 0.7);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: color 0.3s;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.footer-col ul li a:hover { color: var(--white); }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.footer-bottom {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 1280px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding-top: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-top: 1px solid rgba(255, 255, 255, 0.08);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: space-between;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.85rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: rgba(255, 255, 255, 0.4);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>@media (max-width: 1024px) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>.hero-container, .founder-container { grid-template-columns: 1fr; }</p>
-<p class="p1"><span class="Apple-converted-space">            </span>.pillars-grid { grid-template-columns: 1fr; }</p>
-<p class="p1"><span class="Apple-converted-space">            </span>.services-grid { grid-template-columns: repeat(2, 1fr); }</p>
-<p class="p1"><span class="Apple-converted-space">            </span>.footer-container { grid-template-columns: 1fr 1fr; }</p>
-<p class="p1"><span class="Apple-converted-space">            </span>.hero-title { font-size: 2.6rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;header&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="nav-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#" class="brand-logo"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;svg viewBox="0 0 380 95" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;g fill="#2F0059"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;path d="M12 82V18h6v64h-6zm11 0V18h6v64h-6zm11 0V18h6v64h-6zm11 0V18h6v64h-6z"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;path d="M51 18c18 32 38 52 62 56 18 3 32-22 32-56h8c0 42-18 64-40 64-28 0-52-24-70-64z"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;rect x="156" y="18" width="34" height="64" rx="4"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;text x="198" y="62" font-family="'Montserrat', sans-serif" font-weight="800" font-size="46" letter-spacing="-1"&gt;erlín&lt;/text&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;text x="200" y="80" font-family="'Poppins', sans-serif" font-weight="300" font-size="12" letter-spacing="7"&gt;SEGUROS&lt;/text&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/g&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/svg&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;ul class="nav-links"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;li&gt;&lt;a href="#pilares"&gt;Filosofía&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;li&gt;&lt;a href="#nosotros"&gt;Esencia&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;li&gt;&lt;a href="#seguros"&gt;Soluciones&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;li&gt;&lt;a href="#cotizar" class="btn-nav"&gt;Cotizar Seguro&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="hero"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="hero-pattern"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="hero-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="hero-badge"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;i data-lucide="zap" size="16"&gt;&lt;/i&gt; Protección Ágil &amp; A Tu Medida</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h1 class="hero-title"&gt;Lo hacemos &lt;span&gt;fácil y justo&lt;/span&gt; para ti&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="hero-desc"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>Reinventamos la experiencia del seguro en Colombia. Eliminamos el lenguaje confuso y los trámites engorrosos para ofrecerte únicamente la cobertura que tu familia o empresa realmente necesitan.</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="hero-card" id="cotizar"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;Cotiza tu póliza justa&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;Déjanos tus datos y un especialista te asesorará de forma directa.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;form onsubmit="event.preventDefault(); alert('¡Gracias! Un asesor especializado de Merlín se comunicará contigo pronto.');"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="form-group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label&gt;Nombre Completo&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="text" class="form-control" placeholder="Ej. Johanna Díaz" required&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="form-group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label&gt;Correo Electrónico&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="email" class="form-control" placeholder="nombre@empresa.com" required&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="form-group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label&gt;Teléfono de Contacto&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="tel" class="form-control" placeholder="+57 300 000 0000" required&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="form-group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label&gt;¿Qué deseas proteger?&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;select class="form-control"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option&gt;Seguro Todo Riesgo Vehículos&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option&gt;Protección para PyME / Empresa&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option&gt;Seguro de Vida o Salud Familiar&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option&gt;Hogar y Arrendamiento&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button type="submit" class="btn-submit"&gt;Solicitar Asesoría Inmediata&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/form&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="section-padding" id="pilares"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="section-header"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="tag-line"&gt;Nuestra Filosofía&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="section-title"&gt;El modelo de protección que mereces&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="pillars-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="pillar-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="pillar-lines"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="pillar-title"&gt;1. Exploramos&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="pillar-desc"&gt;&lt;strong&gt;Conocemos al cliente entendiéndolo:&lt;/strong&gt; Analizamos tu entorno real y tus metas antes de estructurar cualquier propuesta.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="pillar-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="pillar-lines"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="pillar-title"&gt;2. Anclamos&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="pillar-desc"&gt;&lt;strong&gt;Conectamos con un seguro justo:&lt;/strong&gt; Sin ventas infladas. Pagas únicamente por la protección verdadera que necesitas.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="pillar-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="pillar-lines"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="pillar-title"&gt;3. Respondemos&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="pillar-desc"&gt;&lt;strong&gt;Ayudamos oportunamente:&lt;/strong&gt; Estamos presentes con agilidad y rigor técnico en el instante preciso de un siniestro o reclamación.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="section-padding founder-section" id="nosotros"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="founder-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="tag-line"&gt;Agilidad &amp; Precisión&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="section-title" style="margin-bottom: 1.5rem;"&gt;Inspirados en la naturaleza del Halcón Esmerejón&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem;"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>Nuestra marca toma su nombre e identidad del halcón esmerejón (&lt;em&gt;Merlin&lt;/em&gt;), un ave caracterizada por su velocidad, agudeza visual y adaptabilidad extrema. En un mercado saturado de procesos lentos, actuamos con la misma precisión para cuidar de ti.</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="founder-box"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="founder-quote"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>"Pasamos de un lenguaje técnico a uno cercano y amigable, construyendo la protección que las familias y empresas de Colombia realmente entienden y valoran."</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="founder-info"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h4&gt;Johanna Díaz&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;Fundadora de Merlín Seguros&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="section-padding" id="seguros"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="section-header"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="tag-line"&gt;Soluciones Integrales&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="section-title"&gt;Cobertura para lo que más importa&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="services-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="service-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="service-icon"&gt;&lt;i data-lucide="car" size="26"&gt;&lt;/i&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;Póliza Todo Riesgo&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;Respaldo completo para vehículos particulares y flotas comerciales ante cualquier imprevisto.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="service-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="service-icon"&gt;&lt;i data-lucide="building-2" size="26"&gt;&lt;/i&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;Seguros PyME&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;Protección patrimonial, responsabilidad civil y activos clave para tu empresa o negocio.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="service-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="service-icon"&gt;&lt;i data-lucide="heart" size="26"&gt;&lt;/i&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;Salud &amp; Vida&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;Tranquilidad y respaldo financiero garantizado para cuidar del bienestar de tu familia.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="service-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="service-icon"&gt;&lt;i data-lucide="home" size="26"&gt;&lt;/i&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;Hogar &amp; Arriendo&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;Garantías de arrendamiento y protección integral de bienes inmuebles sin complicaciones.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;footer&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="footer-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;svg class="footer-logo" viewBox="0 0 380 95" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;g fill="#FFFFFF"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;path d="M12 82V18h6v64h-6zm11 0V18h6v64h-6zm11 0V18h6v64h-6zm11 0V18h6v64h-6z"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;path d="M51 18c18 32 38 52 62 56 18 3 32-22 32-56h8c0 42-18 64-40 64-28 0-52-24-70-64z"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;rect x="156" y="18" width="34" height="64" rx="4"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;text x="198" y="62" font-family="'Montserrat', sans-serif" font-weight="800" font-size="46" letter-spacing="-1"&gt;erlín&lt;/text&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;text x="200" y="80" font-family="'Poppins', sans-serif" font-weight="300" font-size="12" letter-spacing="7"&gt;SEGUROS&lt;/text&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/g&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/svg&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p style="font-size: 0.88rem; color: rgba(255,255,255,0.6); max-width: 320px; line-height: 1.6;"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>Transformando la percepción del seguro con transparencia, cercanía y el respaldo justo en Colombia.</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="footer-col"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h5&gt;Navegación&lt;/h5&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;&lt;a href="#pilares"&gt;Filosofía&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;&lt;a href="#nosotros"&gt;Esencia&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;&lt;a href="#seguros"&gt;Soluciones&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="footer-col"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h5&gt;Contacto&lt;/h5&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;contacto@merlinseguros.com&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;www.merlinseguros.com&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Bogotá, Colombia&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="footer-col"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h5&gt;Legales&lt;/h5&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Política de Privacidad&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Términos del Servicio&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Habeas Data&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="footer-bottom"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;&amp;copy; 2026 Merlín Seguros. Todos los derechos reservados.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;Diseñado conforme al Manual de Identidad Visual Corporativa v1.0&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/footer&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>lucide.createIcons();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="brand-logo">
+                <svg viewBox="0 0 380 95" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#2F0059">
+                        <path d="M12 82V18h6v64h-6zm11 0V18h6v64h-6zm11 0V18h6v64h-6zm11 0V18h6v64h-6z"/>
+                        <path d="M51 18c18 32 38 52 62 56 18 3 32-22 32-56h8c0 42-18 64-40 64-28 0-52-24-70-64z"/>
+                        <rect x="156" y="18" width="34" height="64" rx="4"/>
+                        <text x="198" y="62" font-family="'Montserrat', sans-serif" font-weight="800" font-size="46" letter-spacing="-1">erlín</text>
+                        <text x="200" y="80" font-family="'Poppins', sans-serif" font-weight="300" font-size="12" letter-spacing="7">SEGUROS</text>
+                    </g>
+                </svg>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#pilares">Filosofía</a></li>
+                <li><a href="#nosotros">Esencia</a></li>
+                <li><a href="#seguros">Soluciones</a></li>
+                <li><a href="#cotizar" class="btn-nav">Cotizar Seguro</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-pattern"></div>
+        <div class="hero-container">
+            <div>
+                <div class="hero-badge">
+                    <i data-lucide="zap" size="16"></i> Protección Ágil & A Tu Medida
+                </div>
+                <h1 class="hero-title">Lo hacemos <span>fácil y justo</span> para ti</h1>
+                <p class="hero-desc">
+                    Reinventamos la experiencia del seguro en Colombia. Eliminamos el lenguaje confuso y los trámites engorrosos para ofrecerte únicamente la cobertura que tu familia o empresa realmente necesitan.
+                </p>
+            </div>
+
+            <div class="hero-card" id="cotizar">
+                <h3>Cotiza tu póliza justa</h3>
+                <p>Déjanos tus datos y un especialista te asesorará de forma directa.</p>
+                <form onsubmit="event.preventDefault(); alert('¡Gracias! Un asesor especializado de Merlín se comunicará contigo pronto.');">
+                    <div class="form-group">
+                        <label>Nombre Completo</label>
+                        <input type="text" class="form-control" placeholder="Ej. Johanna Díaz" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Correo Electrónico</label>
+                        <input type="email" class="form-control" placeholder="nombre@empresa.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono de Contacto</label>
+                        <input type="tel" class="form-control" placeholder="+57 300 000 0000" required>
+                    </div>
+                    <div class="form-group">
+                        <label>¿Qué deseas proteger?</label>
+                        <select class="form-control">
+                            <option>Seguro Todo Riesgo Vehículos</option>
+                            <option>Protección para PyME / Empresa</option>
+                            <option>Seguro de Vida o Salud Familiar</option>
+                            <option>Hogar y Arrendamiento</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-submit">Solicitar Asesoría Inmediata</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="pilares">
+        <div class="section-header">
+            <span class="tag-line">Nuestra Filosofía</span>
+            <h2 class="section-title">El modelo de protección que mereces</h2>
+        </div>
+
+        <div class="pillars-grid">
+            <div class="pillar-card">
+                <div class="pillar-lines">
+                    <span></span><span></span><span></span><span></span>
+                </div>
+                <h3 class="pillar-title">1. Exploramos</h3>
+                <p class="pillar-desc"><strong>Conocemos al cliente entendiéndolo:</strong> Analizamos tu entorno real y tus metas antes de estructurar cualquier propuesta.</p>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-lines">
+                    <span></span><span></span><span></span><span></span>
+                </div>
+                <h3 class="pillar-title">2. Anclamos</h3>
+                <p class="pillar-desc"><strong>Conectamos con un seguro justo:</strong> Sin ventas infladas. Pagas únicamente por la protección verdadera que necesitas.</p>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-lines">
+                    <span></span><span></span><span></span><span></span>
+                </div>
+                <h3 class="pillar-title">3. Respondemos</h3>
+                <p class="pillar-desc"><strong>Ayudamos oportunamente:</strong> Estamos presentes con agilidad y rigor técnico en el instante preciso de un siniestro o reclamación.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding founder-section" id="nosotros">
+        <div class="founder-container">
+            <div>
+                <span class="tag-line">Agilidad & Precisión</span>
+                <h2 class="section-title" style="margin-bottom: 1.5rem;">Inspirados en la naturaleza del Halcón Esmerejón</h2>
+                <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem;">
+                    Nuestra marca toma su nombre e identidad del halcón esmerejón (<em>Merlin</em>), un ave caracterizada por su velocidad, agudeza visual y adaptabilidad extrema. En un mercado saturado de procesos lentos, actuamos con la misma precisión para cuidar de ti.
+                </p>
+            </div>
+
+            <div class="founder-box">
+                <p class="founder-quote">
+                    "Pasamos de un lenguaje técnico a uno cercano y amigable, construyendo la protección que las familias y empresas de Colombia realmente entienden y valoran."
+                </p>
+                <div class="founder-info">
+                    <h4>Johanna Díaz</h4>
+                    <p>Fundadora de Merlín Seguros</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="seguros">
+        <div class="section-header">
+            <span class="tag-line">Soluciones Integrales</span>
+            <h2 class="section-title">Cobertura para lo que más importa</h2>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i data-lucide="car" size="26"></i></div>
+                <h3>Póliza Todo Riesgo</h3>
+                <p>Respaldo completo para vehículos particulares y flotas comerciales ante cualquier imprevisto.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i data-lucide="building-2" size="26"></i></div>
+                <h3>Seguros PyME</h3>
+                <p>Protección patrimonial, responsabilidad civil y activos clave para tu empresa o negocio.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i data-lucide="heart" size="26"></i></div>
+                <h3>Salud & Vida</h3>
+                <p>Tranquilidad y respaldo financiero garantizado para cuidar del bienestar de tu familia.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i data-lucide="home" size="26"></i></div>
+                <h3>Hogar & Arriendo</h3>
+                <p>Garantías de arrendamiento y protección integral de bienes inmuebles sin complicaciones.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div>
+                <svg class="footer-logo" viewBox="0 0 380 95" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#FFFFFF">
+                        <path d="M12 82V18h6v64h-6zm11 0V18h6v64h-6zm11 0V18h6v64h-6zm11 0V18h6v64h-6z"/>
+                        <path d="M51 18c18 32 38 52 62 56 18 3 32-22 32-56h8c0 42-18 64-40 64-28 0-52-24-70-64z"/>
+                        <rect x="156" y="18" width="34" height="64" rx="4"/>
+                        <text x="198" y="62" font-family="'Montserrat', sans-serif" font-weight="800" font-size="46" letter-spacing="-1">erlín</text>
+                        <text x="200" y="80" font-family="'Poppins', sans-serif" font-weight="300" font-size="12" letter-spacing="7">SEGUROS</text>
+                    </g>
+                </svg>
+                <p style="font-size: 0.88rem; color: rgba(255,255,255,0.6); max-width: 320px; line-height: 1.6;">
+                    Transformando la percepción del seguro con transparencia, cercanía y el respaldo justo en Colombia.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h5>Navegación</h5>
+                <ul>
+                    <li><a href="#pilares">Filosofía</a></li>
+                    <li><a href="#nosotros">Esencia</a></li>
+                    <li><a href="#seguros">Soluciones</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h5>Contacto</h5>
+                <ul>
+                    <li>contacto@merlinseguros.com</li>
+                    <li>www.merlinseguros.com</li>
+                    <li>Bogotá, Colombia</li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h5>Legales</h5>
+                <ul>
+                    <li>Política de Privacidad</li>
+                    <li>Términos del Servicio</li>
+                    <li>Habeas Data</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Merlín Seguros. Todos los derechos reservados.</p>
+            <p>Diseñado conforme al Manual de Identidad Visual Corporativa v1.0</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>
