@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merlín Seguros | Lo hacemos fácil y justo para ti</title>
+    <title>Merlín Seguros | Cotizador de Seguro Todo Riesgo para Autos</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;0,700;0,800;0,900;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
             --morado-corp: #2F0059;
+            --morado-dark: #190030;
             --morado-grad-1: #2F0048;
             --morado-grad-2: #3E0161;
-            --morado-grad-3: #300047;
             --acento-1: #8159BE;
             --acento-2: #6F429A;
-            --acento-suave: #9989A7;
-            --bg-light: #FAFAFC;
+            --gold-accent: #FFC107;
+            --bg-light: #F8F9FC;
             --white: #FFFFFF;
-            --text-dark: #1A052E;
-            --text-muted: #554D60;
+            --text-dark: #120320;
+            --text-muted: #5C5268;
             --font-title: 'Montserrat', sans-serif;
             --font-body: 'Poppins', sans-serif;
         }
@@ -30,45 +30,52 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        /* Efecto de desplazamiento por fichas (Snap Scroll Screen) */
+        html {
             scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
         }
 
         body {
             font-family: var(--font-body);
             color: var(--text-dark);
-            background-color: var(--bg-light);
+            background-color: var(--morado-dark);
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         h1, h2, h3, h4 { font-family: var(--font-title); }
 
-        /* Top Notification Bar */
-        .top-bar {
-            background: var(--morado-corp);
-            color: rgba(255,255,255,0.9);
-            font-size: 0.8rem;
-            text-align: center;
-            padding: 6px 1rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
+        /* CADA SECCIÓN ACTÚA COMO UNA FICHA INDEPENDIENTE */
+        .slide-section {
+            scroll-snap-align: start;
+            min-height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            padding: 5rem 2rem 2rem;
+            overflow: hidden;
         }
 
-        .top-bar strong { color: var(--acento-1); font-weight: 700; }
-
-        /* Glassmorphism Header */
+        /* Header Glassmorphism */
         header {
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            width: 100%;
             z-index: 1000;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(47, 0, 89, 0.08);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            border-bottom: 1px solid rgba(47, 0, 89, 0.12);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
         }
 
         .nav-container {
-            max-width: 1280px;
+            max-width: 1300px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -83,14 +90,15 @@
             text-decoration: none;
         }
 
-        .brand-logo svg {
-            height: 100%;
+        .brand-logo img {
+            height: 48px;
             width: auto;
+            object-fit: contain;
         }
 
         .nav-links {
             display: flex;
-            gap: 2.2rem;
+            gap: 2rem;
             list-style: none;
             align-items: center;
         }
@@ -98,20 +106,15 @@
         .nav-links a {
             text-decoration: none;
             color: var(--morado-corp);
-            font-weight: 600;
-            font-size: 0.92rem;
+            font-weight: 700;
+            font-size: 0.9rem;
             transition: all 0.3s;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--acento-1);
         }
 
         .btn-nav {
             background: var(--morado-corp);
             color: var(--white) !important;
-            padding: 0.75rem 1.8rem;
+            padding: 0.7rem 1.6rem;
             border-radius: 50px;
             font-weight: 700 !important;
             box-shadow: 0 6px 18px rgba(47, 0, 89, 0.25);
@@ -121,149 +124,118 @@
         .btn-nav:hover {
             background: var(--acento-2);
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(111, 66, 154, 0.35);
         }
 
-        /* Hero Section Ultra Modern */
-        .hero {
-            position: relative;
-            padding: 5rem 2rem 6rem;
-            background: linear-gradient(-121deg, var(--morado-grad-1), var(--morado-grad-2), var(--morado-grad-3));
+        /* FICHA 1: HERO IMPACTANTE CON FOTOGRAFÍA + FORMULARIO DE VENTAS DE AUTO */
+        .slide-hero {
+            background: linear-gradient(135deg, rgba(25, 0, 48, 0.92), rgba(62, 1, 97, 0.88)), 
+                        url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             color: var(--white);
-            overflow: hidden;
         }
 
-        /* Curved Waves Accent Background */
-        .hero-wave-bg {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            overflow: hidden;
-            line-height: 0;
-            transform: rotate(180deg);
-        }
-
-        .hero-wave-bg svg {
-            position: relative;
-            display: block;
-            width: calc(100% + 1.3px);
-            height: 70px;
-        }
-
-        .hero-container {
-            max-width: 1280px;
+        .hero-layout {
+            max-width: 1300px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
-            gap: 4rem;
+            gap: 3.5rem;
             align-items: center;
-            position: relative;
-            z-index: 2;
+            width: 100%;
         }
 
-        .hero-badge {
+        .hero-tag {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(10px);
-            padding: 8px 20px;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            padding: 6px 16px;
             border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1.8rem;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #E2C9FF;
+            margin-bottom: 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.25);
         }
 
         .hero-title {
-            font-size: 3.6rem;
+            font-size: 3.2rem;
             font-weight: 800;
-            line-height: 1.12;
-            margin-bottom: 1.5rem;
-            letter-spacing: -1.5px;
+            line-height: 1.15;
+            margin-bottom: 1.2rem;
+            letter-spacing: -1px;
         }
 
         .hero-title span {
             color: var(--acento-1);
-            position: relative;
-            display: inline-block;
+            background: linear-gradient(90deg, #FFFFFF, #D1B3FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .hero-desc {
-            font-size: 1.15rem;
+        .hero-sub {
+            font-size: 1.1rem;
             font-weight: 300;
-            line-height: 1.7;
             opacity: 0.92;
-            margin-bottom: 2.5rem;
-            max-width: 560px;
+            margin-bottom: 2rem;
+            line-height: 1.6;
         }
 
-        .hero-stats-row {
-            display: flex;
-            gap: 2.5rem;
-            margin-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.15);
-            padding-top: 1.5rem;
-        }
-
-        .stat-box h4 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--acento-1);
-        }
-
-        .stat-box p {
-            font-size: 0.8rem;
-            opacity: 0.8;
-        }
-
-        /* Hero Card Pro */
-        .hero-card {
+        /* FORMULARIO DE CONVERSIÓN RÁPIDA DE AUTO */
+        .hero-form-card {
             background: var(--white);
-            border-radius: 28px;
-            padding: 2.8rem;
             color: var(--text-dark);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border-radius: 24px;
+            padding: 2.2rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.9);
-            position: relative;
         }
 
-        .hero-card-header {
-            margin-bottom: 1.8rem;
-        }
-
-        .hero-card-header h3 {
-            font-size: 1.6rem;
+        .form-card-title {
+            font-size: 1.4rem;
             color: var(--morado-corp);
             font-weight: 800;
             margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .hero-card-header p {
-            font-size: 0.88rem;
+        .form-card-sub {
+            font-size: 0.82rem;
             color: var(--text-muted);
+            margin-bottom: 1.5rem;
         }
 
-        .form-group { margin-bottom: 1.2rem; }
+        .form-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
 
         .form-group label {
             display: block;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 700;
             color: var(--morado-corp);
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.3rem;
         }
 
         .form-control {
             width: 100%;
-            padding: 0.95rem 1.1rem;
+            padding: 0.8rem 1rem;
             border: 1.5px solid #E2D9EC;
-            border-radius: 14px;
+            border-radius: 12px;
             font-family: var(--font-body);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             background: #FAF8FC;
             transition: all 0.3s ease;
         }
@@ -272,587 +244,497 @@
             outline: none;
             border-color: var(--acento-1);
             background: var(--white);
-            box-shadow: 0 0 0 4px rgba(129, 89, 190, 0.15);
+            box-shadow: 0 0 0 3px rgba(129, 89, 190, 0.2);
         }
 
-        .btn-submit {
+        .btn-submit-hero {
             width: 100%;
             background: var(--morado-corp);
             color: var(--white);
             border: none;
-            padding: 1.1rem;
-            border-radius: 14px;
+            padding: 1rem;
+            border-radius: 12px;
             font-family: var(--font-title);
             font-weight: 800;
             font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(47, 0, 89, 0.25);
+            box-shadow: 0 8px 20px rgba(47, 0, 89, 0.3);
             margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
-        .btn-submit:hover {
+        .btn-submit-hero:hover {
             background: var(--acento-2);
             transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(111, 66, 154, 0.35);
         }
 
-        /* Section Layouts */
-        .section-padding { padding: 6.5rem 2rem; }
+        /* FICHA 2: ASEGURADORAS ALIADAS (RESPALDO & COBERTURA INIGUALABLE) */
+        .slide-allies {
+            background: var(--white);
+            color: var(--text-dark);
+        }
 
-        .section-header {
+        .allies-container {
+            max-width: 1250px;
+            margin: 0 auto;
             text-align: center;
-            max-width: 740px;
-            margin: 0 auto 4rem;
+            width: 100%;
         }
 
-        .tag-line {
+        .section-tag {
             color: var(--acento-1);
             font-size: 0.85rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 2.5px;
-            margin-bottom: 0.6rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
             display: block;
         }
 
-        .section-title {
+        .section-h2 {
             color: var(--morado-corp);
             font-size: 2.5rem;
             font-weight: 800;
-            letter-spacing: -0.8px;
-        }
-
-        /* Pillars 4-line fluid cards */
-        .pillars-grid {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .pillar-card {
-            background: var(--white);
-            border-radius: 24px;
-            padding: 3rem 2.2rem;
-            border: 1px solid rgba(47, 0, 89, 0.06);
-            box-shadow: 0 10px 30px rgba(47, 0, 89, 0.03);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .pillar-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(47, 0, 89, 0.08);
-            border-color: rgba(129, 89, 190, 0.3);
-        }
-
-        /* 4 Líneas del halcón esmerejón como separador */
-        .falcon-lines {
-            display: flex;
-            gap: 5px;
-            margin-bottom: 1.8rem;
-        }
-
-        .falcon-lines span {
-            width: 4px;
-            height: 28px;
-            background: var(--morado-corp);
-            border-radius: 3px;
-        }
-
-        .falcon-lines span:nth-child(2) { opacity: 0.75; }
-        .falcon-lines span:nth-child(3) { opacity: 0.5; }
-        .falcon-lines span:nth-child(4) { opacity: 0.25; }
-
-        .pillar-title {
-            color: var(--morado-corp);
-            font-size: 1.45rem;
             margin-bottom: 1rem;
-            font-weight: 800;
+            letter-spacing: -0.5px;
         }
 
-        .pillar-desc {
+        .section-p {
             color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.65;
+            max-width: 700px;
+            margin: 0 auto 3.5rem;
+            font-size: 1.05rem;
         }
 
-        /* Halcón Esmerejón Brand Story */
-        .essence-section {
-            background: var(--white);
-            position: relative;
-            overflow: hidden;
+        /* Logos de las aseguradoras principales en Colombia */
+        .allies-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            align-items: center;
         }
 
-        .essence-container {
-            max-width: 1280px;
+        .ally-card {
+            background: var(--bg-light);
+            border: 1px solid #EAE5F0;
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--morado-corp);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .ally-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--acento-1);
+            box-shadow: 0 15px 30px rgba(129, 89, 190, 0.15);
+        }
+
+        .ally-badge {
+            font-size: 0.72rem;
+            background: rgba(47, 0, 89, 0.08);
+            padding: 4px 10px;
+            border-radius: 20px;
+            color: var(--acento-2);
+            font-weight: 600;
+        }
+
+        /* FICHA 3: SABIDURÍA & REVELACIÓN (POR QUÉ MERLÍN) */
+        .slide-wisdom {
+            background: linear-gradient(135deg, var(--morado-dark), var(--morado-grad-2));
+            color: var(--white);
+        }
+
+        .wisdom-layout {
+            max-width: 1250px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
-        }
-
-        .falcon-badge-box {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.8rem;
-        }
-
-        .falcon-feature-item {
-            background: var(--bg-light);
-            border-radius: 16px;
-            padding: 1.2rem;
-            border: 1px solid #EFEAF4;
-            flex: 1;
-        }
-
-        .falcon-feature-item h5 {
-            color: var(--morado-corp);
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 0.3rem;
-        }
-
-        .falcon-feature-item p {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-        }
-
-        .founder-card {
-            background: linear-gradient(135deg, var(--morado-corp), var(--morado-grad-2));
-            border-radius: 32px;
-            padding: 3.5rem;
-            color: var(--white);
-            box-shadow: 0 25px 50px rgba(47, 0, 89, 0.18);
-            position: relative;
-        }
-
-        .founder-quote {
-            font-size: 1.35rem;
-            font-style: italic;
-            font-weight: 300;
-            line-height: 1.65;
-            margin-bottom: 2rem;
-        }
-
-        .founder-profile {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .founder-avatar-circle {
-            width: 56px;
-            height: 56px;
-            background: var(--acento-1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 1.2rem;
-            color: var(--white);
-            border: 2px solid rgba(255,255,255,0.4);
-        }
-
-        .founder-meta h4 {
-            font-size: 1.2rem;
-            font-weight: 800;
-        }
-
-        .founder-meta p {
-            font-size: 0.85rem;
-            opacity: 0.8;
-        }
-
-        /* Services Custom Grid */
-        .services-grid {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.8rem;
-        }
-
-        .service-card {
-            background: var(--white);
-            border-radius: 22px;
-            padding: 2.2rem 1.8rem;
-            border: 1px solid #EFEAF4;
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover {
-            border-color: var(--acento-1);
-            box-shadow: 0 15px 35px rgba(129, 89, 190, 0.15);
-            transform: translateY(-6px);
-        }
-
-        .service-icon {
-            width: 58px;
-            height: 58px;
-            background: rgba(129, 89, 190, 0.1);
-            color: var(--morado-corp);
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.4rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.25rem;
-            color: var(--morado-corp);
-            margin-bottom: 0.6rem;
-            font-weight: 700;
-        }
-
-        .service-card p {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            line-height: 1.55;
-        }
-
-        /* Footer Modern */
-        footer {
-            background: #120024;
-            color: var(--white);
-            padding: 5rem 2rem 2.5rem;
-        }
-
-        .footer-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1.2fr;
             gap: 4rem;
-            margin-bottom: 4rem;
+            align-items: center;
+            width: 100%;
         }
 
-        .footer-logo-wrap {
-            height: 54px;
-            margin-bottom: 1.2rem;
+        .wisdom-image-wrapper {
+            position: relative;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
         }
 
-        .footer-logo-wrap svg {
-            height: 100%;
-            width: auto;
+        .wisdom-image-wrapper img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            display: block;
         }
 
-        .footer-col h5 {
-            font-size: 1.05rem;
-            color: var(--acento-1);
-            margin-bottom: 1.2rem;
-            font-weight: 700;
+        .wisdom-overlay-box {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: rgba(25, 0, 48, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 1.5rem;
+            border-radius: 18px;
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 0.7rem; }
-
-        .footer-col ul li a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s;
+        .wisdom-card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
         }
 
-        .footer-col ul li a:hover { color: var(--white); }
+        .wisdom-item {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 1.8rem;
+            display: flex;
+            gap: 1.2rem;
+            align-items: flex-start;
+        }
+
+        .wisdom-icon-box {
+            background: var(--acento-1);
+            color: var(--white);
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* FICHA 4: FOOTER Y CTA FINAL DE CIERRE */
+        .slide-footer {
+            background: #0D001A;
+            color: var(--white);
+            justify-content: space-between;
+            padding-top: 6rem;
+        }
+
+        .footer-cta-box {
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--morado-corp), var(--morado-grad-2));
+            padding: 3.5rem 2rem;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .footer-grid {
+            max-width: 1250px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
 
         .footer-bottom {
-            max-width: 1280px;
+            max-width: 1250px;
             margin: 0 auto;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            width: 100%;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
             display: flex;
             justify-content: space-between;
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* Indicador de deslizamiento entre fichas */
+        .slide-indicator {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        .slide-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s;
+        }
+
+        .slide-dot.active {
+            background: var(--acento-1);
+            height: 24px;
+            border-radius: 10px;
         }
 
         @media (max-width: 1024px) {
-            .hero-container, .essence-container { grid-template-columns: 1fr; }
-            .pillars-grid { grid-template-columns: 1fr; }
-            .services-grid { grid-template-columns: repeat(2, 1fr); }
-            .footer-container { grid-template-columns: 1fr 1fr; }
-            .hero-title { font-size: 2.8rem; }
+            html { scroll-snap-type: none; }
+            .slide-section { min-height: auto; padding: 6rem 1.5rem 3rem; }
+            .hero-layout, .wisdom-layout { grid-template-columns: 1fr; }
+            .allies-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .slide-indicator { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Top Bar -->
-    <div class="top-bar">
-        ⚡ <strong>Merlín Seguros Colombia:</strong> Coberturas ágiles, transparentes y a la medida de familias y PyMEs.
+    <!-- Indicator de Fichas -->
+    <div class="slide-indicator">
+        <div class="slide-dot active"></div>
+        <div class="slide-dot"></div>
+        <div class="slide-dot"></div>
+        <div class="slide-dot"></div>
     </div>
 
-    <!-- Header Navigation -->
+    <!-- Header Fijo con Logo Oficial Original -->
     <header>
         <div class="nav-container">
             <a href="#" class="brand-logo">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 110" width="100%" height="100%">
-  <g fill="#2F0059">
-    <!-- 4 Líneas verticales del fuste -->
-    <rect x="10" y="20" width="5" height="70" rx="2.5"/>
-    <rect x="20" y="20" width="5" height="70" rx="2.5"/>
-    <rect x="30" y="20" width="5" height="70" rx="2.5"/>
-    <rect x="40" y="20" width="5" height="70" rx="2.5"/>
-    
-    <!-- Trazos curvos del vuelo del halcón -->
-    <path d="M 42 20 C 60 55 80 82 105 82 C 125 82 142 50 142 20 L 152 20 C 152 58 130 92 105 92 C 74 92 52 60 32 20 Z" />
-    <path d="M 52 20 C 68 52 86 74 105 74 C 118 74 132 48 132 20 L 140 20 C 140 52 124 82 105 82 C 82 82 62 55 42 20 Z" />
-    
-    <!-- Bloque sólido M -->
-    <path d="M 150 20 L 185 20 L 185 90 L 150 90 Z" />
-    
-    <!-- Texto erlín con tipografía ultra fiel -->
-    <text x="195" y="72" font-family="'Montserrat', sans-serif" font-weight="800" font-size="54" letter-spacing="-1.5px">erlín</text>
-    
-    <!-- Subtexto SEGUROS en Poppins Light -->
-    <text x="198" y="89" font-family="'Poppins', sans-serif" font-weight="300" font-size="13" letter-spacing="6px">SEGUROS</text>
-  </g>
-</svg>
+                <img src="data:image/png;base64,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" alt="Merlín Seguros Logo Oficial">
             </a>
             <ul class="nav-links">
-                <li><a href="#pilares">Filosofía</a></li>
-                <li><a href="#nosotros">Esencia</a></li>
-                <li><a href="#seguros">Soluciones</a></li>
-                <li><a href="#cotizar" class="btn-nav">Cotizar Seguro</a></li>
+                <li><a href="#ficha-1">Cotizar Vehículo</a></li>
+                <li><a href="#ficha-2">Aseguradoras Aliadas</a></li>
+                <li><a href="#ficha-3">Por Qué Merlín</a></li>
+                <li><a href="#ficha-1" class="btn-nav">Cotizar Seguro Todo Riesgo</a></li>
             </ul>
         </div>
     </header>
 
-    <!-- Hero Section Ultra Modern -->
-    <section class="hero">
-        <div class="hero-container">
+    <!-- FICHA 1: COTIZADOR PRINCIPAL DE AUTOS & EXPERIENCIA FOTOGRÁFICA -->
+    <section class="slide-section slide-hero" id="ficha-1">
+        <div class="hero-layout">
             <div>
-                <div class="hero-badge">
-                    <i data-lucide="shield-check" size="18"></i> Protección Ágil & A Tu Medida Justa
+                <div class="hero-tag">
+                    <i data-lucide="shield-check" size="16"></i> Agencia de Seguros Especializada
                 </div>
-                <h1 class="hero-title">Lo hacemos <span>fácil y justo</span> para ti</h1>
-                <p class="hero-desc">
-                    Eliminamos el lenguaje confuso y los trámites complicados. Asegurarte con Merlín es un proceso fluido, rápido y transparente para que pagues exactamente por la protección que necesitas.
+                <h1 class="hero-title">El Seguro Todo Riesgo <span>perfecto para tu auto</span></h1>
+                <p class="hero-sub">
+                    Comparamos entre las principales compañías aseguradoras de Colombia para garantizarte no solo la mejor tarifa del mercado, sino una cobertura inigualable y acompañamiento directo en caso de siniestro.
                 </p>
-                <div class="hero-stats-row">
-                    <div class="stat-box">
-                        <h4>100%</h4>
-                        <p>Sin letras chiquitas</p>
-                    </div>
-                    <div class="stat-box">
-                        <h4>Agilidad</h4>
-                        <p>Respuesta inmediata</p>
-                    </div>
-                    <div class="stat-box">
-                        <h4>A Tu Medida</h4>
-                        <p>Prima justa calculada</p>
-                    </div>
-                </div>
             </div>
 
-            <div class="hero-card" id="cotizar">
-                <div class="hero-card-header">
-                    <h3>Cotiza tu póliza justa</h3>
-                    <p>Déjanos tus datos y un especialista te asesorará de forma directa y cercana.</p>
+            <!-- FORMULARIO EXACTO SOLICITADO PARA VEHÍCULOS -->
+            <div class="hero-form-card">
+                <div class="form-card-title">
+                    <i data-lucide="car" size="24"></i> Cotiza en 1 Minuto
                 </div>
-                <form onsubmit="event.preventDefault(); alert('¡Gracias por comunicarte con Merlín Seguros! Un especialista se contactará contigo en breve.');">
-                    <div class="form-group">
-                        <label>Nombre Completo</label>
-                        <input type="text" class="form-control" placeholder="Ej. Johanna Díaz" required>
+                <p class="form-card-sub">Ingresa los datos del vehículo para calcular tu prima de seguro a la medida.</p>
+                
+                <form onsubmit="event.preventDefault(); alert('¡Cotización recibida! Un asesor especialista de Merlín Seguros comparará las opciones en las mejores aseguradoras del país y se comunicará contigo de inmediato.');">
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label>Nombre Completo</label>
+                            <input type="text" class="form-control" placeholder="Ej. Carlos Mendoza" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Teléfono / WhatsApp</label>
+                            <input type="tel" class="form-control" placeholder="300 000 0000" required>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Correo Electrónico</label>
-                        <input type="email" class="form-control" placeholder="nombre@empresa.com" required>
+
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label>Cédula de Ciudadanía</label>
+                            <input type="text" class="form-control" placeholder="No. Documento" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Fecha de Nacimiento</label>
+                            <input type="date" class="form-control" required>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Teléfono de Contacto</label>
-                        <input type="tel" class="form-control" placeholder="+57 300 000 0000" required>
+
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label>Placa del Vehículo</label>
+                            <input type="text" class="form-control" placeholder="Ej. ABC 123" style="text-transform: uppercase;" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Ciudad de Circulación</label>
+                            <input type="text" class="form-control" placeholder="Ej. Bogotá / Medellín" required>
+                        </div>
                     </div>
+
                     <div class="form-group">
-                        <label>¿Qué deseas proteger?</label>
+                        <label>Tipo de Servicio</label>
                         <select class="form-control">
-                            <option>Seguro Todo Riesgo Vehículos</option>
-                            <option>Protección Integral para PyME / Empresa</option>
-                            <option>Seguro de Vida o Salud Familiar</option>
-                            <option>Hogar y Arrendamiento</option>
+                            <option>Vehículo Particular</option>
+                            <option>Servicio Público / Flota</option>
+                            <option>Motocicleta</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn-submit">Solicitar Asesoría Personalizada</button>
+
+                    <button type="submit" class="btn-submit-hero">
+                        <i data-lucide="calculator" size="18"></i> Obtener Cotización Comparativa
+                    </button>
                 </form>
             </div>
         </div>
+    </section>
 
-        <!-- Dynamic Curved Bottom Wave -->
-        <div class="hero-wave-bg">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M0,0 C150,90 350,-40 500,60 C650,160 900,10 1200,40 L1200,120 L0,120 Z" fill="#FAFAFC"></path>
-            </svg>
+    <!-- FICHA 2: TRABAJAMOS CON LAS MEJORES COMPAÑÍAS DE SEGUROS DEL PAÍS -->
+    <section class="slide-section slide-allies" id="ficha-2">
+        <div class="allies-container">
+            <span class="section-tag">Acompañamiento & Respaldo Total</span>
+            <h2 class="section-h2">Trabajamos con las mejores aseguradoras de Colombia</h2>
+            <p class="section-p">
+                Como agencia consultora experta, no estamos amarrados a una sola opción. Evaluamos las propuestas de las compañías líderes para asegurarte el precio más competitivo con las mejores coberturas.
+            </p>
+
+            <div class="allies-grid">
+                <div class="ally-card">
+                    <i data-lucide="award" size="32"></i>
+                    SURA
+                    <span class="ally-badge">Cobertura Todo Riesgo</span>
+                </div>
+                <div class="ally-card">
+                    <i data-lucide="shield" size="32"></i>
+                    AXA COLPATRIA
+                    <span class="ally-badge">Asistencia VIP Auto</span>
+                </div>
+                <div class="ally-card">
+                    <i data-lucide="check-circle" size="32"></i>
+                    ALLIANZ
+                    <span class="ally-badge">Protección Patrimonial</span>
+                </div>
+                <div class="ally-card">
+                    <i data-lucide="star" size="32"></i>
+                    MAPFRE
+                    <span class="ally-badge">Respaldo Internacional</span>
+                </div>
+                <div class="ally-card">
+                    <i data-lucide="heart-handshake" size="32"></i>
+                    LIBERTY
+                    <span class="ally-badge">Taller Concesionario</span>
+                </div>
+                <div class="ally-card">
+                    <i data-lucide="zap" size="32"></i>
+                    SEGUROS BOLÍVAR
+                    <span class="ally-badge">Atención Inmediata</span>
+                </div>
+                <div class="ally-card">
+                    <i data-lucide="lock" size="32"></i>
+                    EQUITIDAD
+                    <span class="ally-badge">Prima Ajustada</span>
+                </div>
+                <div class="ally-card">
+                    <i data-lucide="smile" size="32"></i>
+                    HDI SEGUROS
+                    <span class="ally-badge">Sustitución de Auto</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Pilares Section -->
-    <section class="section-padding" id="pilares">
-        <div class="section-header">
-            <span class="tag-line">Nuestra Filosofía de Trabajo</span>
-            <h2 class="section-title">El modelo de seguros que mereces</h2>
-        </div>
-
-        <div class="pillars-grid">
-            <div class="pillar-card">
-                <div class="falcon-lines">
-                    <span></span><span></span><span></span><span></span>
+    <!-- FICHA 3: PERSONALIDAD DE MARCA (SABIDURÍA, CONFIANZA & DESCUBRIMIENTO) -->
+    <section class="slide-section slide-wisdom" id="ficha-3">
+        <div class="wisdom-layout">
+            <div class="wisdom-image-wrapper">
+                <!-- Fotografía de impacto visual estilo portal internacional (Nadal) -->
+                <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80" alt="Conducción segura Merlín">
+                <div class="wisdom-overlay-box">
+                    <h4 style="font-size: 1.1rem; color: #E2C9FF;">"Un seguro no es un gasto, es el arte de anticipar el futuro con sabiduría."</h4>
+                    <p style="font-size: 0.82rem; opacity: 0.8; margin-top: 4px;">– Equipo de Consultoría Merlín Seguros</p>
                 </div>
-                <h3 class="pillar-title">1. Exploramos</h3>
-                <p class="pillar-desc"><strong>Conocemos al cliente entendiéndolo:</strong> Nos tomamos el tiempo para analizar tu entorno particular, metas y riesgos reales antes de ofrecer cualquier solución.</p>
             </div>
 
-            <div class="pillar-card">
-                <div class="falcon-lines">
-                    <span></span><span></span><span></span><span></span>
-                </div>
-                <h3 class="pillar-title">2. Anclamos</h3>
-                <p class="pillar-desc"><strong>Conectamos con la necesidad con un seguro justo:</strong> Sin cobros inflados ni planes innecesarios. Pagas únicamente por lo que protege tu patrimonio de verdad.</p>
-            </div>
-
-            <div class="pillar-card">
-                <div class="falcon-lines">
-                    <span></span><span></span><span></span><span></span>
-                </div>
-                <h3 class="pillar-title">3. Respondemos</h3>
-                <p class="pillar-desc"><strong>Ayudamos con experiencia oportunamente:</strong> Estamos a tu lado con soporte experto, cercano e inmediato en el momento exacto en que más lo necesitas.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Halcón Esmerejón Brand Story -->
-    <section class="section-padding essence-section" id="nosotros">
-        <div class="essence-container">
             <div>
-                <span class="tag-line">Velocidad, Agudeza & Adaptabilidad</span>
-                <h2 class="section-title" style="margin-bottom: 1.5rem;">Inspirados en la agilidad del Halcón Esmerejón</h2>
-                <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1.8rem;">
-                    El nombre de nuestra marca proviene del halcón esmerejón (conocido en inglés como <em>Merlin</em>), un ave de velocidad extrema, visión panorámica y capacidad de adaptación constante.
-                </p>
-                <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem;">
-                    Esa misma destreza la trasladamos al sector asegurador: no malgastamos energía, actuamos con agilidad y alcanzamos tu tranquilidad con exactitud.
-                </p>
-
-                <div class="falcon-badge-box">
-                    <div class="falcon-feature-item">
-                        <h5>Lo hacemos fácil</h5>
-                        <p>Sin tecnicismos ni burocracia. Un proceso fluido y rápido.</p>
+                <span class="section-tag" style="color: var(--acento-1);">La Sabiduría de Elegir Bien</span>
+                <h2 class="section-h2" style="color: var(--white); margin-bottom: 1.5rem;">Cercanía experta que descubre lo que realmente necesitas</h2>
+                
+                <div class="wisdom-card-grid">
+                    <div class="wisdom-item">
+                        <div class="wisdom-icon-box"><i data-lucide="compass" size="24"></i></div>
+                        <div>
+                            <h4 style="font-size: 1.15rem; margin-bottom: 0.3rem;">Descubrimiento sin presiones</h4>
+                            <p style="font-size: 0.88rem; opacity: 0.85;">Analizamos los hábitos de uso de tu vehículo para revelarte la póliza justa sin hacerte pagar por cláusulas innecesarias.</p>
+                        </div>
                     </div>
-                    <div class="falcon-feature-item">
-                        <h5>Lo hacemos justo</h5>
-                        <p>Cobertura exacta adaptada a la medida de tu presupuesto.</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="founder-card">
-                <p class="founder-quote">
-                    "Pasamos de un lenguaje técnico a uno cercano y amigable para cuidar verdaderamente el futuro de las familias y empresas colombianas."
-                </p>
-                <div class="founder-profile">
-                    <div class="founder-avatar-circle">JD</div>
-                    <div class="founder-meta">
-                        <h4>Johanna Díaz</h4>
-                        <p>Fundadora & Directora de Merlín Seguros</p>
+                    <div class="wisdom-item">
+                        <div class="wisdom-icon-box"><i data-lucide="user-check" size="24"></i></div>
+                        <div>
+                            <h4 style="font-size: 1.15rem; margin-bottom: 0.3rem;">Acompañamiento en momentos de verdad</h4>
+                            <p style="font-size: 0.88rem; opacity: 0.85;">Cuando ocurre un choque o imprevisto, no te dejamos solo respondiendo a un robot. Tienes un asesor experto de tu lado haciendo valer tu póliza.</p>
+                        </div>
+                    </div>
+
+                    <div class="wisdom-item">
+                        <div class="wisdom-icon-box"><i data-lucide="trending-down" size="24"></i></div>
+                        <div>
+                            <h4 style="font-size: 1.15rem; margin-bottom: 0.3rem;">Garantía de Prima Justa</h4>
+                            <p style="font-size: 0.88rem; opacity: 0.85;">Aprovechamos nuestros convenios corporativos para que ahorres hasta un 30% en la renovación o adquisición de tu póliza todo riesgo.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Grid -->
-    <section class="section-padding" id="seguros">
-        <div class="section-header">
-            <span class="tag-line">Soluciones Integrales</span>
-            <h2 class="section-title">Protección a la medida para tu vida</h2>
+    <!-- FICHA 4: FOOTER DE CIERRE Y ACCIÓNN DIRECTA -->
+    <section class="slide-section slide-footer" id="ficha-4">
+        <div class="footer-cta-box">
+            <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 0.8rem; color: var(--white);">
+                ¿Listo para asegurar tu auto con la tranquilidad que mereces?
+            </h2>
+            <p style="font-size: 1rem; opacity: 0.9; margin-bottom: 1.8rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Recibe un cuadro comparativo entre las mejores 5 aseguradoras de Colombia sin costo y sin compromiso.
+            </p>
+            <a href="#ficha-1" class="btn-nav" style="padding: 1rem 2.5rem; font-size: 1rem; display: inline-block;">
+                Cotizar Mi Vehículo Ahora
+            </a>
         </div>
 
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon"><i data-lucide="car" size="28"></i></div>
-                <h3>Póliza Todo Riesgo</h3>
-                <p>Protección total para tu vehículo particular o flota empresarial con respaldos inmediatos ante todo siniestro.</p>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon"><i data-lucide="briefcase" size="28"></i></div>
-                <h3>Seguros PyME</h3>
-                <p>Respaldo integral para empresas, responsabilidad civil, cumplimiento y activos clave de tu compañía.</p>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon"><i data-lucide="heart-pulse" size="28"></i></div>
-                <h3>Salud y Vida</h3>
-                <p>Tranquilidad familiar con asistencias médicas oportunas y respaldo financiero garantizado.</p>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon"><i data-lucide="home" size="28"></i></div>
-                <h3>Hogar y Arriendo</h3>
-                <p>Protección de bienes inmuebles, contenidos y garantías de arrendamiento de forma clara y sin enredos.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
+        <div class="footer-grid">
             <div>
-                <div class="footer-logo-wrap">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 110" width="100%" height="100%">
-  <g fill="#FFFFFF">
-    <!-- 4 Líneas verticales del fuste -->
-    <rect x="10" y="20" width="5" height="70" rx="2.5"/>
-    <rect x="20" y="20" width="5" height="70" rx="2.5"/>
-    <rect x="30" y="20" width="5" height="70" rx="2.5"/>
-    <rect x="40" y="20" width="5" height="70" rx="2.5"/>
-    
-    <!-- Trazos curvos del vuelo del halcón -->
-    <path d="M 42 20 C 60 55 80 82 105 82 C 125 82 142 50 142 20 L 152 20 C 152 58 130 92 105 92 C 74 92 52 60 32 20 Z" />
-    <path d="M 52 20 C 68 52 86 74 105 74 C 118 74 132 48 132 20 L 140 20 C 140 52 124 82 105 82 C 82 82 62 55 42 20 Z" />
-    
-    <!-- Bloque sólido M -->
-    <path d="M 150 20 L 185 20 L 185 90 L 150 90 Z" />
-    
-    <!-- Texto erlín con tipografía ultra fiel -->
-    <text x="195" y="72" font-family="'Montserrat', sans-serif" font-weight="800" font-size="54" letter-spacing="-1.5px">erlín</text>
-    
-    <!-- Subtexto SEGUROS en Poppins Light -->
-    <text x="198" y="89" font-family="'Poppins', sans-serif" font-weight="300" font-size="13" letter-spacing="6px">SEGUROS</text>
-  </g>
-</svg>
-                </div>
-                <p style="font-size: 0.88rem; color: rgba(255,255,255,0.65); max-width: 320px; line-height: 1.6; margin-top: 1rem;">
-                    Transformando la percepción del seguro con un servicio cercano, ágil, transparente y justo en Colombia.
+                <img src="data:image/png;base64,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" alt="Merlín Seguros Logo Oficial" style="height: 48px; width: auto; margin-bottom: 1rem;">
+                <p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); max-width: 300px; line-height: 1.6;">
+                    Agencia consultora de seguros en Colombia. Transparencia, agudeza técnica y cercanía para cuidar de ti.
                 </p>
             </div>
 
-            <div class="footer-col">
-                <h5>Navegación</h5>
-                <ul>
-                    <li><a href="#pilares">Filosofía</a></li>
-                    <li><a href="#nosotros">Esencia</a></li>
-                    <li><a href="#seguros">Soluciones</a></li>
+            <div>
+                <h5 style="color: var(--acento-1); margin-bottom: 1rem;">Secciones</h5>
+                <ul style="list-style: none;">
+                    <li><a href="#ficha-1" style="color: rgba(255,255,255,0.7); text-decoration: none;">Cotizador Autos</a></li>
+                    <li><a href="#ficha-2" style="color: rgba(255,255,255,0.7); text-decoration: none;">Aseguradoras Aliadas</a></li>
+                    <li><a href="#ficha-3" style="color: rgba(255,255,255,0.7); text-decoration: none;">Por Qué Merlín</a></li>
                 </ul>
             </div>
 
-            <div class="footer-col">
-                <h5>Contacto</h5>
-                <ul>
+            <div>
+                <h5 style="color: var(--acento-1); margin-bottom: 1rem;">Contacto</h5>
+                <ul style="list-style: none; font-size: 0.88rem; color: rgba(255,255,255,0.7);">
                     <li>contacto@merlinseguros.com</li>
                     <li>www.merlinseguros.com</li>
                     <li>Bogotá, Colombia</li>
                 </ul>
             </div>
 
-            <div class="footer-col">
-                <h5>Aviso Legal</h5>
-                <ul>
+            <div>
+                <h5 style="color: var(--acento-1); margin-bottom: 1rem;">Legal</h5>
+                <ul style="list-style: none; font-size: 0.88rem; color: rgba(255,255,255,0.7);">
                     <li>Política de Privacidad</li>
                     <li>Términos y Condiciones</li>
                     <li>Habeas Data</li>
@@ -864,7 +746,7 @@
             <p>&copy; 2026 Merlín Seguros. Todos los derechos reservados.</p>
             <p>Diseñado respetando el Manual de Identidad Visual Corporativa v1.0</p>
         </div>
-    </footer>
+    </section>
 
     <script>
         lucide.createIcons();
