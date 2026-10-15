@@ -4,15 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Merlín Seguros | Lo hacemos fácil y justo para ti</title>
-    
-    <!-- Tipografías Oficiales del Manual de Marca -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;0,700;0,800;0,900;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Lucide Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-
     <style>
         :root {
             --morado-corp: #2F0059;
@@ -22,10 +18,10 @@
             --acento-1: #8159BE;
             --acento-2: #6F429A;
             --acento-suave: #9989A7;
-            --bg-light: #F9F8FC;
+            --bg-light: #FAFAFC;
             --white: #FFFFFF;
-            --text-dark: #120320;
-            --text-muted: #5C5268;
+            --text-dark: #1A052E;
+            --text-muted: #554D60;
             --font-title: 'Montserrat', sans-serif;
             --font-body: 'Poppins', sans-serif;
         }
@@ -42,21 +38,33 @@
             color: var(--text-dark);
             background-color: var(--bg-light);
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
         h1, h2, h3, h4 { font-family: var(--font-title); }
 
-        /* Navbar Glassmorphism */
+        /* Top Notification Bar */
+        .top-bar {
+            background: var(--morado-corp);
+            color: rgba(255,255,255,0.9);
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 6px 1rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .top-bar strong { color: var(--acento-1); font-weight: 700; }
+
+        /* Glassmorphism Header */
         header {
-            position: fixed;
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(16px);
             border-bottom: 1px solid rgba(47, 0, 89, 0.08);
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
         }
 
         .nav-container {
@@ -65,19 +73,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.9rem 2rem;
+            padding: 0.8rem 2rem;
         }
 
         .brand-logo {
             display: flex;
             align-items: center;
+            height: 52px;
             text-decoration: none;
         }
 
-        .brand-logo img, .brand-logo svg {
-            height: 48px;
+        .brand-logo svg {
+            height: 100%;
             width: auto;
-            object-fit: contain;
         }
 
         .nav-links {
@@ -92,10 +100,13 @@
             color: var(--morado-corp);
             font-weight: 600;
             font-size: 0.92rem;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            position: relative;
         }
 
-        .nav-links a:hover { color: var(--acento-1); }
+        .nav-links a:hover {
+            color: var(--acento-1);
+        }
 
         .btn-nav {
             background: var(--morado-corp);
@@ -103,34 +114,41 @@
             padding: 0.75rem 1.8rem;
             border-radius: 50px;
             font-weight: 700 !important;
-            box-shadow: 0 4px 15px rgba(47, 0, 89, 0.25);
+            box-shadow: 0 6px 18px rgba(47, 0, 89, 0.25);
             transition: all 0.3s ease !important;
         }
 
         .btn-nav:hover {
             background: var(--acento-2);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(111, 66, 154, 0.35);
+            box-shadow: 0 8px 25px rgba(111, 66, 154, 0.35);
         }
 
-        /* Hero Section Pro */
+        /* Hero Section Ultra Modern */
         .hero {
             position: relative;
-            padding: 9.5rem 2rem 6.5rem;
+            padding: 5rem 2rem 6rem;
             background: linear-gradient(-121deg, var(--morado-grad-1), var(--morado-grad-2), var(--morado-grad-3));
             color: var(--white);
             overflow: hidden;
         }
 
-        .hero-pattern {
+        /* Curved Waves Accent Background */
+        .hero-wave-bg {
             position: absolute;
-            top: -10%;
-            right: -5%;
-            width: 550px;
-            height: 550px;
-            background: radial-gradient(circle, rgba(129, 89, 190, 0.22) 0%, rgba(0,0,0,0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+
+        .hero-wave-bg svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 70px;
         }
 
         .hero-container {
@@ -151,74 +169,87 @@
             background: rgba(255, 255, 255, 0.12);
             border: 1px solid rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(10px);
-            padding: 8px 18px;
+            padding: 8px 20px;
             border-radius: 30px;
             font-size: 0.85rem;
             font-weight: 600;
-            letter-spacing: 0.5px;
             margin-bottom: 1.8rem;
         }
 
         .hero-title {
-            font-size: 3.4rem;
+            font-size: 3.6rem;
             font-weight: 800;
-            line-height: 1.15;
+            line-height: 1.12;
             margin-bottom: 1.5rem;
-            letter-spacing: -1px;
+            letter-spacing: -1.5px;
         }
 
         .hero-title span {
-            background: linear-gradient(90deg, #FFFFFF, var(--acento-1));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--acento-1);
+            position: relative;
+            display: inline-block;
         }
 
         .hero-desc {
             font-size: 1.15rem;
             font-weight: 300;
             line-height: 1.7;
-            opacity: 0.9;
+            opacity: 0.92;
             margin-bottom: 2.5rem;
             max-width: 560px;
         }
 
-        /* Hero Form Card */
+        .hero-stats-row {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding-top: 1.5rem;
+        }
+
+        .stat-box h4 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--acento-1);
+        }
+
+        .stat-box p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        /* Hero Card Pro */
         .hero-card {
             background: var(--white);
             border-radius: 28px;
             padding: 2.8rem;
             color: var(--text-dark);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.9);
             position: relative;
         }
 
-        .hero-card::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 10%; width: 80%; height: 5px;
-            background: linear-gradient(90deg, var(--morado-corp), var(--acento-1));
-            border-radius: 0 0 10px 10px;
+        .hero-card-header {
+            margin-bottom: 1.8rem;
         }
 
-        .hero-card h3 {
+        .hero-card-header h3 {
             font-size: 1.6rem;
             color: var(--morado-corp);
-            margin-bottom: 0.4rem;
             font-weight: 800;
+            margin-bottom: 0.3rem;
         }
 
-        .hero-card p {
+        .hero-card-header p {
             font-size: 0.88rem;
             color: var(--text-muted);
-            margin-bottom: 1.8rem;
         }
 
         .form-group { margin-bottom: 1.2rem; }
 
         .form-group label {
             display: block;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 700;
             color: var(--morado-corp);
             text-transform: uppercase;
@@ -252,7 +283,7 @@
             padding: 1.1rem;
             border-radius: 14px;
             font-family: var(--font-title);
-            font-weight: 700;
+            font-weight: 800;
             font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -266,12 +297,12 @@
             box-shadow: 0 12px 25px rgba(111, 66, 154, 0.35);
         }
 
-        /* Pillars Section */
+        /* Section Layouts */
         .section-padding { padding: 6.5rem 2rem; }
 
         .section-header {
             text-align: center;
-            max-width: 720px;
+            max-width: 740px;
             margin: 0 auto 4rem;
         }
 
@@ -280,18 +311,19 @@
             font-size: 0.85rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 2.5px;
             margin-bottom: 0.6rem;
             display: block;
         }
 
         .section-title {
             color: var(--morado-corp);
-            font-size: 2.4rem;
+            font-size: 2.5rem;
             font-weight: 800;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.8px;
         }
 
+        /* Pillars 4-line fluid cards */
         .pillars-grid {
             max-width: 1280px;
             margin: 0 auto;
@@ -308,7 +340,6 @@
             box-shadow: 0 10px 30px rgba(47, 0, 89, 0.03);
             transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
         }
 
         .pillar-card:hover {
@@ -317,26 +348,27 @@
             border-color: rgba(129, 89, 190, 0.3);
         }
 
-        .pillar-lines {
+        /* 4 Líneas del halcón esmerejón como separador */
+        .falcon-lines {
             display: flex;
-            gap: 4px;
-            margin-bottom: 1.5rem;
+            gap: 5px;
+            margin-bottom: 1.8rem;
         }
 
-        .pillar-lines span {
+        .falcon-lines span {
             width: 4px;
-            height: 24px;
+            height: 28px;
             background: var(--morado-corp);
-            border-radius: 2px;
+            border-radius: 3px;
         }
 
-        .pillar-lines span:nth-child(2) { opacity: 0.7; }
-        .pillar-lines span:nth-child(3) { opacity: 0.4; }
-        .pillar-lines span:nth-child(4) { opacity: 0.2; }
+        .falcon-lines span:nth-child(2) { opacity: 0.75; }
+        .falcon-lines span:nth-child(3) { opacity: 0.5; }
+        .falcon-lines span:nth-child(4) { opacity: 0.25; }
 
         .pillar-title {
             color: var(--morado-corp);
-            font-size: 1.4rem;
+            font-size: 1.45rem;
             margin-bottom: 1rem;
             font-weight: 800;
         }
@@ -344,16 +376,17 @@
         .pillar-desc {
             color: var(--text-muted);
             font-size: 0.95rem;
-            line-height: 1.6;
+            line-height: 1.65;
         }
 
-        /* Founder Section */
-        .founder-section {
+        /* Halcón Esmerejón Brand Story */
+        .essence-section {
             background: var(--white);
             position: relative;
+            overflow: hidden;
         }
 
-        .founder-container {
+        .essence-container {
             max-width: 1280px;
             margin: 0 auto;
             display: grid;
@@ -362,34 +395,80 @@
             align-items: center;
         }
 
-        .founder-box {
+        .falcon-badge-box {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.8rem;
+        }
+
+        .falcon-feature-item {
+            background: var(--bg-light);
+            border-radius: 16px;
+            padding: 1.2rem;
+            border: 1px solid #EFEAF4;
+            flex: 1;
+        }
+
+        .falcon-feature-item h5 {
+            color: var(--morado-corp);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .falcon-feature-item p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        .founder-card {
             background: linear-gradient(135deg, var(--morado-corp), var(--morado-grad-2));
             border-radius: 32px;
             padding: 3.5rem;
             color: var(--white);
+            box-shadow: 0 25px 50px rgba(47, 0, 89, 0.18);
             position: relative;
-            box-shadow: 0 20px 40px rgba(47, 0, 89, 0.15);
         }
 
         .founder-quote {
             font-size: 1.35rem;
             font-style: italic;
             font-weight: 300;
-            line-height: 1.6;
+            line-height: 1.65;
             margin-bottom: 2rem;
         }
 
-        .founder-info h4 {
+        .founder-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .founder-avatar-circle {
+            width: 56px;
+            height: 56px;
+            background: var(--acento-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.4);
+        }
+
+        .founder-meta h4 {
             font-size: 1.2rem;
             font-weight: 800;
         }
 
-        .founder-info p {
+        .founder-meta p {
             font-size: 0.85rem;
             opacity: 0.8;
         }
 
-        /* Services Grid */
+        /* Services Custom Grid */
         .services-grid {
             max-width: 1280px;
             margin: 0 auto;
@@ -400,7 +479,7 @@
 
         .service-card {
             background: var(--white);
-            border-radius: 20px;
+            border-radius: 22px;
             padding: 2.2rem 1.8rem;
             border: 1px solid #EFEAF4;
             transition: all 0.3s ease;
@@ -408,16 +487,16 @@
 
         .service-card:hover {
             border-color: var(--acento-1);
-            box-shadow: 0 12px 30px rgba(129, 89, 190, 0.12);
-            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(129, 89, 190, 0.15);
+            transform: translateY(-6px);
         }
 
         .service-icon {
-            width: 54px;
-            height: 54px;
+            width: 58px;
+            height: 58px;
             background: rgba(129, 89, 190, 0.1);
             color: var(--morado-corp);
-            border-radius: 16px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -425,18 +504,19 @@
         }
 
         .service-card h3 {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: var(--morado-corp);
             margin-bottom: 0.6rem;
+            font-weight: 700;
         }
 
         .service-card p {
             font-size: 0.88rem;
             color: var(--text-muted);
-            line-height: 1.5;
+            line-height: 1.55;
         }
 
-        /* Footer Pro */
+        /* Footer Modern */
         footer {
             background: #120024;
             color: var(--white);
@@ -452,10 +532,14 @@
             margin-bottom: 4rem;
         }
 
-        .footer-logo {
-            height: 48px;
-            width: auto;
+        .footer-logo-wrap {
+            height: 54px;
             margin-bottom: 1.2rem;
+        }
+
+        .footer-logo-wrap svg {
+            height: 100%;
+            width: auto;
         }
 
         .footer-col h5 {
@@ -489,33 +573,47 @@
         }
 
         @media (max-width: 1024px) {
-            .hero-container, .founder-container { grid-template-columns: 1fr; }
+            .hero-container, .essence-container { grid-template-columns: 1fr; }
             .pillars-grid { grid-template-columns: 1fr; }
             .services-grid { grid-template-columns: repeat(2, 1fr); }
             .footer-container { grid-template-columns: 1fr 1fr; }
-            .hero-title { font-size: 2.6rem; }
+            .hero-title { font-size: 2.8rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Top Bar -->
+    <div class="top-bar">
+        ⚡ <strong>Merlín Seguros Colombia:</strong> Coberturas ágiles, transparentes y a la medida de familias y PyMEs.
+    </div>
+
     <!-- Header Navigation -->
     <header>
         <div class="nav-container">
             <a href="#" class="brand-logo">
-                <!-- Logotipo Oficial Vectorial Fiel de Merlín Seguros -->
-                <svg class="logo-svg" viewBox="0 0 520 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Trazos M del halcón -->
-                    <g fill="#2F0059">
-                        <path d="M20 100V20h8v80h-8zm14 0V20h8v80h-8zm14 0V20h8v80h-8zm14 0V20h8v80h-8z"/>
-                        <path d="M70 20c22 40 48 68 78 72 22 3 40-28 40-72h12c0 54-24 82-52 82-36 0-66-32-90-82z"/>
-                        <path d="M202 20h42v80h-42z" rx="6"/>
-                        <!-- Palabra Merlín -->
-                        <text x="252" y="78" font-family="'Montserrat', sans-serif" font-weight="900" font-size="62" letter-spacing="-2">erlín</text>
-                        <!-- Subtexto SEGUROS -->
-                        <text x="256" y="100" font-family="'Poppins', sans-serif" font-weight="400" font-size="16" letter-spacing="9">SEGUROS</text>
-                    </g>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 110" width="100%" height="100%">
+  <g fill="#2F0059">
+    <!-- 4 Líneas verticales del fuste -->
+    <rect x="10" y="20" width="5" height="70" rx="2.5"/>
+    <rect x="20" y="20" width="5" height="70" rx="2.5"/>
+    <rect x="30" y="20" width="5" height="70" rx="2.5"/>
+    <rect x="40" y="20" width="5" height="70" rx="2.5"/>
+    
+    <!-- Trazos curvos del vuelo del halcón -->
+    <path d="M 42 20 C 60 55 80 82 105 82 C 125 82 142 50 142 20 L 152 20 C 152 58 130 92 105 92 C 74 92 52 60 32 20 Z" />
+    <path d="M 52 20 C 68 52 86 74 105 74 C 118 74 132 48 132 20 L 140 20 C 140 52 124 82 105 82 C 82 82 62 55 42 20 Z" />
+    
+    <!-- Bloque sólido M -->
+    <path d="M 150 20 L 185 20 L 185 90 L 150 90 Z" />
+    
+    <!-- Texto erlín con tipografía ultra fiel -->
+    <text x="195" y="72" font-family="'Montserrat', sans-serif" font-weight="800" font-size="54" letter-spacing="-1.5px">erlín</text>
+    
+    <!-- Subtexto SEGUROS en Poppins Light -->
+    <text x="198" y="89" font-family="'Poppins', sans-serif" font-weight="300" font-size="13" letter-spacing="6px">SEGUROS</text>
+  </g>
+</svg>
             </a>
             <ul class="nav-links">
                 <li><a href="#pilares">Filosofía</a></li>
@@ -526,24 +624,39 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section Ultra Modern -->
     <section class="hero">
-        <div class="hero-pattern"></div>
         <div class="hero-container">
             <div>
                 <div class="hero-badge">
-                    <i data-lucide="zap" size="16"></i> Protección Ágil & A Tu Medida
+                    <i data-lucide="shield-check" size="18"></i> Protección Ágil & A Tu Medida Justa
                 </div>
                 <h1 class="hero-title">Lo hacemos <span>fácil y justo</span> para ti</h1>
                 <p class="hero-desc">
-                    Reinventamos la experiencia del seguro en Colombia. Eliminamos el lenguaje confuso y los trámites engorrosos para ofrecerte únicamente la cobertura que tu familia o empresa realmente necesitan.
+                    Eliminamos el lenguaje confuso y los trámites complicados. Asegurarte con Merlín es un proceso fluido, rápido y transparente para que pagues exactamente por la protección que necesitas.
                 </p>
+                <div class="hero-stats-row">
+                    <div class="stat-box">
+                        <h4>100%</h4>
+                        <p>Sin letras chiquitas</p>
+                    </div>
+                    <div class="stat-box">
+                        <h4>Agilidad</h4>
+                        <p>Respuesta inmediata</p>
+                    </div>
+                    <div class="stat-box">
+                        <h4>A Tu Medida</h4>
+                        <p>Prima justa calculada</p>
+                    </div>
+                </div>
             </div>
 
             <div class="hero-card" id="cotizar">
-                <h3>Cotiza tu póliza justa</h3>
-                <p>Déjanos tus datos y un especialista te asesorará de forma directa.</p>
-                <form onsubmit="event.preventDefault(); alert('¡Gracias! Un asesor especializado de Merlín se comunicará contigo pronto.');">
+                <div class="hero-card-header">
+                    <h3>Cotiza tu póliza justa</h3>
+                    <p>Déjanos tus datos y un especialista te asesorará de forma directa y cercana.</p>
+                </div>
+                <form onsubmit="event.preventDefault(); alert('¡Gracias por comunicarte con Merlín Seguros! Un especialista se contactará contigo en breve.');">
                     <div class="form-group">
                         <label>Nombre Completo</label>
                         <input type="text" class="form-control" placeholder="Ej. Johanna Díaz" required>
@@ -560,69 +673,93 @@
                         <label>¿Qué deseas proteger?</label>
                         <select class="form-control">
                             <option>Seguro Todo Riesgo Vehículos</option>
-                            <option>Protección para PyME / Empresa</option>
+                            <option>Protección Integral para PyME / Empresa</option>
                             <option>Seguro de Vida o Salud Familiar</option>
                             <option>Hogar y Arrendamiento</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn-submit">Solicitar Asesoría Inmediata</button>
+                    <button type="submit" class="btn-submit">Solicitar Asesoría Personalizada</button>
                 </form>
             </div>
+        </div>
+
+        <!-- Dynamic Curved Bottom Wave -->
+        <div class="hero-wave-bg">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,0 C150,90 350,-40 500,60 C650,160 900,10 1200,40 L1200,120 L0,120 Z" fill="#FAFAFC"></path>
+            </svg>
         </div>
     </section>
 
     <!-- Pilares Section -->
     <section class="section-padding" id="pilares">
         <div class="section-header">
-            <span class="tag-line">Nuestra Filosofía</span>
-            <h2 class="section-title">El modelo de protección que mereces</h2>
+            <span class="tag-line">Nuestra Filosofía de Trabajo</span>
+            <h2 class="section-title">El modelo de seguros que mereces</h2>
         </div>
 
         <div class="pillars-grid">
             <div class="pillar-card">
-                <div class="pillar-lines">
+                <div class="falcon-lines">
                     <span></span><span></span><span></span><span></span>
                 </div>
                 <h3 class="pillar-title">1. Exploramos</h3>
-                <p class="pillar-desc"><strong>Conocemos al cliente entendiéndolo:</strong> Analizamos tu entorno real y tus metas antes de estructurar cualquier propuesta.</p>
+                <p class="pillar-desc"><strong>Conocemos al cliente entendiéndolo:</strong> Nos tomamos el tiempo para analizar tu entorno particular, metas y riesgos reales antes de ofrecer cualquier solución.</p>
             </div>
 
             <div class="pillar-card">
-                <div class="pillar-lines">
+                <div class="falcon-lines">
                     <span></span><span></span><span></span><span></span>
                 </div>
                 <h3 class="pillar-title">2. Anclamos</h3>
-                <p class="pillar-desc"><strong>Conectamos con un seguro justo:</strong> Sin ventas infladas. Pagas únicamente por la protección verdadera que necesitas.</p>
+                <p class="pillar-desc"><strong>Conectamos con la necesidad con un seguro justo:</strong> Sin cobros inflados ni planes innecesarios. Pagas únicamente por lo que protege tu patrimonio de verdad.</p>
             </div>
 
             <div class="pillar-card">
-                <div class="pillar-lines">
+                <div class="falcon-lines">
                     <span></span><span></span><span></span><span></span>
                 </div>
                 <h3 class="pillar-title">3. Respondemos</h3>
-                <p class="pillar-desc"><strong>Ayudamos oportunamente:</strong> Estamos presentes con agilidad y rigor técnico en el instante preciso de un siniestro o reclamación.</p>
+                <p class="pillar-desc"><strong>Ayudamos con experiencia oportunamente:</strong> Estamos a tu lado con soporte experto, cercano e inmediato en el momento exacto en que más lo necesitas.</p>
             </div>
         </div>
     </section>
 
-    <!-- Founder & Brand Essence -->
-    <section class="section-padding founder-section" id="nosotros">
-        <div class="founder-container">
+    <!-- Halcón Esmerejón Brand Story -->
+    <section class="section-padding essence-section" id="nosotros">
+        <div class="essence-container">
             <div>
-                <span class="tag-line">Agilidad & Precisión</span>
-                <h2 class="section-title" style="margin-bottom: 1.5rem;">Inspirados en la naturaleza del Halcón Esmerejón</h2>
-                <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem;">
-                    Nuestra marca toma su nombre e identidad del halcón esmerejón (<em>Merlin</em>), un ave caracterizada por su velocidad, agudeza visual y adaptabilidad extrema. En un mercado saturado de procesos lentos, actuamos con la misma precisión para cuidar de ti.
+                <span class="tag-line">Velocidad, Agudeza & Adaptabilidad</span>
+                <h2 class="section-title" style="margin-bottom: 1.5rem;">Inspirados en la agilidad del Halcón Esmerejón</h2>
+                <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1.8rem;">
+                    El nombre de nuestra marca proviene del halcón esmerejón (conocido en inglés como <em>Merlin</em>), un ave de velocidad extrema, visión panorámica y capacidad de adaptación constante.
                 </p>
+                <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem;">
+                    Esa misma destreza la trasladamos al sector asegurador: no malgastamos energía, actuamos con agilidad y alcanzamos tu tranquilidad con exactitud.
+                </p>
+
+                <div class="falcon-badge-box">
+                    <div class="falcon-feature-item">
+                        <h5>Lo hacemos fácil</h5>
+                        <p>Sin tecnicismos ni burocracia. Un proceso fluido y rápido.</p>
+                    </div>
+                    <div class="falcon-feature-item">
+                        <h5>Lo hacemos justo</h5>
+                        <p>Cobertura exacta adaptada a la medida de tu presupuesto.</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="founder-box">
+            <div class="founder-card">
                 <p class="founder-quote">
-                    "Pasamos de un lenguaje técnico a uno cercano y amigable, construyendo la protección que las familias y empresas de Colombia realmente entienden y valoran."
+                    "Pasamos de un lenguaje técnico a uno cercano y amigable para cuidar verdaderamente el futuro de las familias y empresas colombianas."
                 </p>
-                <div class="founder-info">
-                    <h4>Johanna Díaz</h4>
-                    <p>Fundadora de Merlín Seguros</p>
+                <div class="founder-profile">
+                    <div class="founder-avatar-circle">JD</div>
+                    <div class="founder-meta">
+                        <h4>Johanna Díaz</h4>
+                        <p>Fundadora & Directora de Merlín Seguros</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -632,32 +769,32 @@
     <section class="section-padding" id="seguros">
         <div class="section-header">
             <span class="tag-line">Soluciones Integrales</span>
-            <h2 class="section-title">Cobertura para lo que más importa</h2>
+            <h2 class="section-title">Protección a la medida para tu vida</h2>
         </div>
 
         <div class="services-grid">
             <div class="service-card">
-                <div class="service-icon"><i data-lucide="car" size="26"></i></div>
+                <div class="service-icon"><i data-lucide="car" size="28"></i></div>
                 <h3>Póliza Todo Riesgo</h3>
-                <p>Respaldo completo para vehículos particulares y flotas comerciales ante cualquier imprevisto.</p>
+                <p>Protección total para tu vehículo particular o flota empresarial con respaldos inmediatos ante todo siniestro.</p>
             </div>
 
             <div class="service-card">
-                <div class="service-icon"><i data-lucide="building-2" size="26"></i></div>
+                <div class="service-icon"><i data-lucide="briefcase" size="28"></i></div>
                 <h3>Seguros PyME</h3>
-                <p>Protección patrimonial, responsabilidad civil y activos clave para tu empresa o negocio.</p>
+                <p>Respaldo integral para empresas, responsabilidad civil, cumplimiento y activos clave de tu compañía.</p>
             </div>
 
             <div class="service-card">
-                <div class="service-icon"><i data-lucide="heart" size="26"></i></div>
-                <h3>Salud & Vida</h3>
-                <p>Tranquilidad y respaldo financiero garantizado para cuidar del bienestar de tu familia.</p>
+                <div class="service-icon"><i data-lucide="heart-pulse" size="28"></i></div>
+                <h3>Salud y Vida</h3>
+                <p>Tranquilidad familiar con asistencias médicas oportunas y respaldo financiero garantizado.</p>
             </div>
 
             <div class="service-card">
-                <div class="service-icon"><i data-lucide="home" size="26"></i></div>
-                <h3>Hogar & Arriendo</h3>
-                <p>Garantías de arrendamiento y protección integral de bienes inmuebles sin complicaciones.</p>
+                <div class="service-icon"><i data-lucide="home" size="28"></i></div>
+                <h3>Hogar y Arriendo</h3>
+                <p>Protección de bienes inmuebles, contenidos y garantías de arrendamiento de forma clara y sin enredos.</p>
             </div>
         </div>
     </section>
@@ -666,17 +803,32 @@
     <footer>
         <div class="footer-container">
             <div>
-                <svg class="footer-logo" viewBox="0 0 520 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g fill="#FFFFFF">
-                        <path d="M20 100V20h8v80h-8zm14 0V20h8v80h-8zm14 0V20h8v80h-8zm14 0V20h8v80h-8z"/>
-                        <path d="M70 20c22 40 48 68 78 72 22 3 40-28 40-72h12c0 54-24 82-52 82-36 0-66-32-90-82z"/>
-                        <path d="M202 20h42v80h-42z" rx="6"/>
-                        <text x="252" y="78" font-family="'Montserrat', sans-serif" font-weight="900" font-size="62" letter-spacing="-2">erlín</text>
-                        <text x="256" y="100" font-family="'Poppins', sans-serif" font-weight="400" font-size="16" letter-spacing="9">SEGUROS</text>
-                    </g>
-                </svg>
-                <p style="font-size: 0.88rem; color: rgba(255,255,255,0.6); max-width: 320px; line-height: 1.6;">
-                    Transformando la percepción del seguro con transparencia, cercanía y el respaldo justo en Colombia.
+                <div class="footer-logo-wrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 110" width="100%" height="100%">
+  <g fill="#FFFFFF">
+    <!-- 4 Líneas verticales del fuste -->
+    <rect x="10" y="20" width="5" height="70" rx="2.5"/>
+    <rect x="20" y="20" width="5" height="70" rx="2.5"/>
+    <rect x="30" y="20" width="5" height="70" rx="2.5"/>
+    <rect x="40" y="20" width="5" height="70" rx="2.5"/>
+    
+    <!-- Trazos curvos del vuelo del halcón -->
+    <path d="M 42 20 C 60 55 80 82 105 82 C 125 82 142 50 142 20 L 152 20 C 152 58 130 92 105 92 C 74 92 52 60 32 20 Z" />
+    <path d="M 52 20 C 68 52 86 74 105 74 C 118 74 132 48 132 20 L 140 20 C 140 52 124 82 105 82 C 82 82 62 55 42 20 Z" />
+    
+    <!-- Bloque sólido M -->
+    <path d="M 150 20 L 185 20 L 185 90 L 150 90 Z" />
+    
+    <!-- Texto erlín con tipografía ultra fiel -->
+    <text x="195" y="72" font-family="'Montserrat', sans-serif" font-weight="800" font-size="54" letter-spacing="-1.5px">erlín</text>
+    
+    <!-- Subtexto SEGUROS en Poppins Light -->
+    <text x="198" y="89" font-family="'Poppins', sans-serif" font-weight="300" font-size="13" letter-spacing="6px">SEGUROS</text>
+  </g>
+</svg>
+                </div>
+                <p style="font-size: 0.88rem; color: rgba(255,255,255,0.65); max-width: 320px; line-height: 1.6; margin-top: 1rem;">
+                    Transformando la percepción del seguro con un servicio cercano, ágil, transparente y justo en Colombia.
                 </p>
             </div>
 
@@ -699,10 +851,10 @@
             </div>
 
             <div class="footer-col">
-                <h5>Legales</h5>
+                <h5>Aviso Legal</h5>
                 <ul>
                     <li>Política de Privacidad</li>
-                    <li>Términos del Servicio</li>
+                    <li>Términos y Condiciones</li>
                     <li>Habeas Data</li>
                 </ul>
             </div>
@@ -710,7 +862,7 @@
 
         <div class="footer-bottom">
             <p>&copy; 2026 Merlín Seguros. Todos los derechos reservados.</p>
-            <p>Diseñado conforme al Manual de Identidad Visual Corporativa v1.0</p>
+            <p>Diseñado respetando el Manual de Identidad Visual Corporativa v1.0</p>
         </div>
     </footer>
 
